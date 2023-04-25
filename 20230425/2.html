@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>onclick事件阻止冒泡后无法监听到了</title>
+  </head>
+  <body>
+    <button id="btn">很大很大的按钮</button>
+
+    <script>
+      // sdk
+      document.addEventListener("click", function (e) {
+        console.log("addEventListener:监控到了冒泡上来的事件", e.target, e.currentTarget);
+      });
+      document.documentElement.onclick = function(){
+        console.log("onclick:监控到了冒泡上来的事件");
+      }
+
+      // 业务代码
+      const el = document.getElementById("btn");
+      el.onclick = function (e) {
+        e.stopPropagation();
+        console.log("onclick");
+      };
+    </script>
+  </body>
+</html>

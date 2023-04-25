@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>addEventListener事件捕获</title>
+  </head>
+  <body>
+    <button id="btn">很大很大的按钮</button>
+
+    <script>
+      // sdk
+      document.addEventListener("click", function (e) {
+        console.log("addEventListener:监控到了冒泡上来的事件", e.target, e.currentTarget);
+      });
+      document.documentElement.onclick = function(){
+        console.log("onclick:监控到了冒泡上来的事件");
+      }
+
+      // 业务代码
+      const el = document.getElementById("btn");
+      el.addEventListener('click',function(e){
+         console.log("onclick")
+      })
+    </script>
+  </body>
+</html>
